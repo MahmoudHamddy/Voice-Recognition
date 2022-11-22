@@ -23,14 +23,14 @@ recognition.onresult = (event) => {
     
 
     if (text.toLowerCase().includes("open the door")) {
-        // said_text.innerText = "DOOR OPENED"
+        said_text.innerText = ""
         if(!isDoorOpen){
         door.classList.toggle("doorOpen");
         isDoorOpen = true;
         }
     }
     else if (text.toLowerCase().includes("close the door")){
-        // said_text.innerText = "DOOR CLOSED"
+        said_text.innerText = ""
         if (isDoorOpen) {
             door.classList.toggle("doorOpen");   
             isDoorOpen = false;
