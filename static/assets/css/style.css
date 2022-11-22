@@ -66,7 +66,7 @@ body {
 }
 
 .door {
-  background-image: url(assets/door.png);
+  background-image: url(../img/door.png);
   background-size: contain;
   position: absolute;
   top: 0px;
