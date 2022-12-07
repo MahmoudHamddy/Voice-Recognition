@@ -1,7 +1,7 @@
 from email import message
 from flask import Flask, redirect, url_for, request,render_template,flash,session
 import numpy as np
-from sympy import Id
+# from sympy import Id
 import pickle
 
 
