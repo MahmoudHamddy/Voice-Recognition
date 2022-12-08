@@ -29,6 +29,18 @@ body {
   background-color: white;
 }
 
+#whose_recorded {
+  width: 100%;
+  border-radius: 20px;
+  resize: none;
+  padding: 20px;
+  font-size: 25px;
+  margin-top: 10px;
+  text-align: center;
+  overflow: hidden;
+  background-color: white;
+}
+
 #said_text {
   color: white;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;

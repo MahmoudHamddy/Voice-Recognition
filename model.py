@@ -68,13 +68,7 @@ def get_filters(filter_points, FFT_size):
     
     return filters
 
-#windowing 
-FFT_size=0.001
-window = get_window("hann", FFT_size, fftbins=True)
-
-
-
-
-
-
-sample_rate, audio = wavfile.read()
+# #windowing 
+# FFT_size=0.001
+# window = get_window("hann", FFT_size, fftbins=True)
+# sample_rate, audio = wavfile.read()
