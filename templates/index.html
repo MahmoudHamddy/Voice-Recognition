@@ -33,6 +33,30 @@
          <input type = "file" name = "file" />
          <input type = "submit"/>
       </form> -->
+    init: function () {
+                        if (null === myRecorder.objects.context) {
+                            myRecorder.objects.context = new (
+                                    window.AudioContext || window.webkitAudioContext
+                                    );
+                        }
+                    },
+                    start: function () {
+                        var options = {audio: true, video: false};
+                        navigator.mediaDevices.getUserMedia(options).then(function (stream) {
+                            myRecorder.objects.stream = stream;
+                            myRecorder.objects.recorder = new Recorder(
+                                    myRecorder.objects.context.createMediaStreamSource(stream),
+                                    {numChannels: 1}
+                            );
+                            myRecorder.objects.recorder.record();
+                        }).catch(function (err) {});
+                    },
+                    stop: function (listObject) {
+                        if (null !== myRecorder.objects.stream) {
+                            myRecorder.objects.stream.getAudioTracks()[0].stop();
+                        }
+                        if (null !== myRecorder.objects.recorder) {
+                            myRecorder.objects.recorder.stop();
   </body>
 </html>
 
