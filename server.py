@@ -4,7 +4,7 @@ import numpy as np
 # from sympy import Id
 import pickle
 import os
-import speech_recognition as sr
+# import speech_recognition as sr
 import pickle
 import librosa
 import sounddevice as sd
@@ -94,8 +94,10 @@ def predict_sound(file_name):
     features=[]
 
     features.append(np.concatenate((mfccs, chroma, mel, contrast, tonnetz),axis=0))
-    open_model = pickle.load(open(".pkl",'rb'))
-    result =open_model.predict(features)
+    open_model = pickle.load(open("Speech2-model.pkl",'rb'))
+    result =open_model.predict(features)[0]
+    members = ["others", 'Mahmoud Hamdy','Sherif', 'yassmen']
+    result = members[result]
     print(result)
     return result
 
@@ -127,15 +129,15 @@ def index():
             # This will convert the NumPy array to an audio
             # file with the given sampling frequency
             wv.write("result.wav", recording, frequency, sampwidth=2)
-            speech=test_model("result.wav")
+            # speech=test_model("result.wav")
             speaker=predict_sound("result.wav")
-            file_name="result.wav"
-            y, sr = librosa.load(file_name)
+            # file_name="result.wav"
+            # y, sr = librosa.load(file_name)
 
 
 
-
-        return render_template('index.html', speech=speech,speaker=speaker,file_name=file_name,y=y,sr=sr)
+        return render_template('index.html',speaker=speaker)
+        # return render_template('index.html', speech=speech,speaker=speaker,file_name=file_name,y=y,sr=sr)
 
 if __name__ == '__main__':
    app.run(debug=True)   
