@@ -47,11 +47,6 @@ recognition.onresult = (event) => {
     record_button.style.animationName = "";
   }
 
-
-// more documentation available at
-// https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
-
-// the link to your model provided by Teachable Machine export panel
 const URL = "https://teachablemachine.withgoogle.com/models/g19IVvfMD/";
 
 async function createModel() {
@@ -84,10 +79,10 @@ async function init() {
         // render the probability scores per class
         // for (let i = 0; i < classLabels.length; i++) {
             // if (result.scores[i].toFixed(2)>=0.77){  
-        const classPrediction = classLabels[scores.indexOf(max_score)] + ": " + max_score.toFixed(2);
+        const classPrediction = "You are: " + classLabels[scores.indexOf(max_score)];
         whose_recorded.innerHTML = classPrediction;
         setTimeout(() => recognizer.stopListening(), 1000);
-            // }    
+            // }
         // }
     }, {
         includeSpectrogram: true, // in case listen should return result.spectrogram
