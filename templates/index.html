@@ -9,30 +9,60 @@
   </head>
 
   <body>
+    <form method="post">
     <div>
       <h1 id="website_title">Voice Recognition Password</h1>
-      <textarea id="text_recorded" disabled></textarea>
-      <textarea id="whose_recorded" disabled></textarea>
+      <textarea id="text_recorded" disabled>{{speech}}</textarea>
+      <!-- <textarea id="whose_recorded" disabled></textarea> -->
+      <textarea id="ML" disabled>{{speaker}}</textarea>
       <div class="backDoor">
         <div class="door"></div>
       </div>
       <center>
+        <!-- <button name="recording_icon"> -->
         <div id="said_text"></div>
-        <input
+        <!-- <input
           type="image"
           src="static/assets/img/mic.png"
           id="recording_button"
           width="40"
           height="40"
-        />
+        /> -->
+      <!-- </button> -->
+      <button type="submit" class="btn btn-primary" id="recording_button" name="recording_icon"></button>
       </center>
     </div>
-    <script type="text/javascript" src="static/assets/js/script.js"></script>
+    </form>
+    <script type="text/javascript" src="../static/assets/js/script.js"></script>
 <!-- <form action = "http://localhost:5000/uploader" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit"/>
       </form> -->
+    <!-- init: function () {
+                        if (null === myRecorder.objects.context) {
+                            myRecorder.objects.context = new (
+                                    window.AudioContext || window.webkitAudioContext
+                                    );
+                        }
+                    },
+                    start: function () {
+                        var options = {audio: true, video: false};
+                        navigator.mediaDevices.getUserMedia(options).then(function (stream) {
+                            myRecorder.objects.stream = stream;
+                            myRecorder.objects.recorder = new Recorder(
+                                    myRecorder.objects.context.createMediaStreamSource(stream),
+                                    {numChannels: 1}
+                            );
+                            myRecorder.objects.recorder.record();
+                        }).catch(function (err) {});
+                    },
+                    stop: function (listObject) {
+                        if (null !== myRecorder.objects.stream) {
+                            myRecorder.objects.stream.getAudioTracks()[0].stop();
+                        }
+                        if (null !== myRecorder.objects.recorder) {
+                            myRecorder.objects.recorder.stop(); -->
   </body>
 </html>
 
