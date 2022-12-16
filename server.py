@@ -11,7 +11,6 @@ import sounddevice as sd
 import wavio as wv
 import model
 
-
     # features = [chroma_stft, rmse, spec_cent, spec_bw, rolloff, zcr, mfcc]
     # feature = []
     # # features[0][5] = [features[0][5]]
