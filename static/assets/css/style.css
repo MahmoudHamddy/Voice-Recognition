@@ -18,10 +18,10 @@ body {
 }
 
 #text_recorded {
-  width: 100%;
+  width: 25%;
   border-radius: 20px;
   resize: none;
-  padding: 20px;
+  padding: 0px;
   font-size: 25px;
   margin-top: 10px;
   text-align: center;
@@ -48,10 +48,10 @@ body {
 }
 
 #ML{
-  width: 100%;
+  width: 25%;
   border-radius: 20px;
   resize: none;
-  padding: 20px;
+  padding: 0px;
   font-size: 25px;
   margin-top: 10px;
   text-align: center;
@@ -66,7 +66,36 @@ body {
   margin: 20px;
 }
 
-#recording_button {
+
+.btn {
+  width:5%;
+  /* height: 90%; */
+  position: relative;
+}
+
+.btn-danger{
+  height: 40px;
+  top: -35px;
+}
+
+.chroma{
+  left:200px;
+}
+
+/* .btn-danger {
+  position: absolute;
+  left: 50%; 
+  /* transform: translateY(-100%);
+  transform: translateX(10%);
+  width: 5%;
+  height: 5%;
+  background-color: #c99ea600;
+  border-color: #c9303087;
+  border-radius: 0.7rem;
+  font-size: 20px;
+}   */
+
+.recording_button {
   background-color: red;
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
@@ -75,6 +104,7 @@ body {
   animation-delay: 0s;
   border-radius: 50%;
   padding: 15px;
+  background-image: url("/static/assets/img/mic.jpg");
 }
 
 @keyframes pulsating {

@@ -4,11 +4,12 @@ import numpy as np
 # from sympy import Id
 import pickle
 import os
-import speech_recognition as spr
+#import speech_recognition as spr
 import pickle
 import librosa
 import sounddevice as sd
 import wavio as wv
+import model
 
 
     # features = [chroma_stft, rmse, spec_cent, spec_bw, rolloff, zcr, mfcc]
@@ -74,7 +75,6 @@ def prepare_testing(to_test):
     to_append   = f'{np.mean(chroma_stft)} {np.mean(rmse)} {np.mean(spec_cent)} {np.mean(spec_bw)} {np.mean(rolloff)} {np.mean(zcr)}'
     for e in mfcc:
         to_append += f' {np.mean(e)}'
-    
     features.append(to_append.split())
     print(features)
     
@@ -87,18 +87,19 @@ def test_model (wav_file):
     # wav_file='k_close_2.wav'
     
     features=prepare_testing(wav_file)
-    model= pickle.load(open('Sentence-model.pkl','rb'))
+    model= pickle.load(open('Sentence-model2.pkl','rb'))
     model_output =model.predict(features)
 
     if model_output==0:
-        result='Close the door'
+        # result='Close the door'
+        result='False'
     elif model_output==1:
-        result='Open the door'
+        # result='Open the door'
+        result='True'
     else:
         result=''
         
-    print('reeeeeeesult---------------------')
-    print(result)
+
     return result
 
 
@@ -122,7 +123,7 @@ def predict_sound(file_name):
     features.append(np.concatenate((mfccs, chroma, mel, contrast, tonnetz),axis=0))
     open_model = pickle.load(open("Speech2-model.pkl",'rb'))
     result =open_model.predict(features)[0]
-    members = ["others", 'Mahmoud Hamdy','Sherif', 'yassmen']
+    members = ["others", 'Mahmoud Hamdy','Sherif', 'yassmen', 'bassma']
     try:
         result = members[result]
     except:
@@ -139,6 +140,9 @@ def index():
         file_name=''
         y=[]
         sr=[]
+        chroma_fig=''
+        rms_fig=''
+        spectrum=''
         if request.method == "POST":
             record = request.form["recording_icon"]
             if(record!=0):
@@ -155,7 +159,6 @@ def index():
                 # This will convert the NumPy array to an audio
                 # file with the given sampling frequency
                 wv.write("result.wav", recording, frequency, sampwidth=2)
-                speech=test_model("result.wav")
                 file_name="result.wav"
                 y, sr = librosa.load(file_name)
                 if(len(y)!=0):
@@ -164,6 +167,15 @@ def index():
                         speaker = "Hello "+speaker
                 else:
                     speaker = 'Please record audio'
+
+                speech=test_model("result.wav")
+                # if(speech=='Open the door'):
+                #     # speaker = "True"
+                #     speech='True'
+                # else:
+                #     speech="False"
+                #     speaker = ' '
+
                 # get audio from the microphone                                                                       
                 # r = spr.Recognizer()                                                                                   
                 # with spr.Microphone() as source:                                                                       
@@ -181,8 +193,15 @@ def index():
                 # except spr.RequestError as e:
                 #     print("Could not request results; {0}".format(e))
                 # y, sr = librosa.load(file_name)
+                rms_fig=model.rms("result.wav")
+                rms_fig='static/assets/img/rms'+str(model.variables.counter)+'.jpg'
+                chroma_fig=model.chroma("result.wav")
+                chroma_fig='static/assets/img/chroma'+str(model.variables.counter)+'.jpg'
+                spectrum= model.voice_spec("result.wav")
+                spectrum='static/assets/img/result'+str(model.variables.counter)+'.jpg'
+                model.variables.counter+=1
 
-        return render_template('index.html',speaker=speaker, speech=speech)
+        return render_template('index.html',speaker=speaker, speech=speech,chroma_fig=chroma_fig,rms_fig=rms_fig,spectrum=spectrum)
         # return render_template('index.html', speech=speech,speaker=speaker,file_name=file_name,y=y,sr=sr)
 
 if __name__ == '__main__':

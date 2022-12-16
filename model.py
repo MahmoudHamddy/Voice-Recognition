@@ -7,6 +7,19 @@ from scipy.signal import get_window
 #import IPython.display as ipd
 import matplotlib.pyplot as plt
 import wave
+import scipy.io.wavfile as wavfile
+import io 
+import base64 
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import seaborn as sns
+import librosa
+import librosa.display
+import librosa as lr
+from librosa.core import stft, amplitude_to_db
+from librosa.display import specshow
+
+class variables:
+   counter=0
 
 #normalize audio
 def normalize_audio(audio):
@@ -68,7 +81,57 @@ def get_filters(filter_points, FFT_size):
     
     return filters
 
-# #windowing 
-# FFT_size=0.001
-# window = get_window("hann", FFT_size, fftbins=True)
-# sample_rate, audio = wavfile.read()
+ #-----------------------------------------------------------------------------------------------------------------------------------------   
+
+def image(fig,name):
+   #canvas=FigureCanvas(fig)
+   img=io.BytesIO()
+   fig.figure.savefig(img, format='png')
+   img.seek(0)
+   # Embed the result in the html output.
+   data = base64.b64encode(img.getbuffer()).decode("ascii")
+   image_file_name='static/assets/img/'+str(name)+str(variables.counter)+'.jpg'
+   plt.savefig(image_file_name)
+   return f"<img src='data:image/png;base64,{data}'/>"
+
+def chroma(file):
+    y, sr = librosa.load(file,res_type='kaiser_fast')
+    chroma_stft = librosa.feature.chroma_stft(y=y, sr=sr)
+    fig=plt.figure(figsize=(6,6))
+    img = librosa.display.specshow(chroma_stft, y_axis='chroma', x_axis='time')
+    plt.title('ChromaSTFT')
+    plt.colorbar()
+    chroma_fig = image(fig,'chroma')
+    return chroma_fig
+
+
+def rms(audio):
+   signal,sample_rate=librosa.load(audio)
+   S, phase = librosa.magphase(librosa.stft(signal))
+   rms = librosa.feature.rms(S=S)
+   fig, ax = plt.subplots()
+   times = librosa.times_like(rms)
+   ax.semilogy(times, rms[0], label='RMS Energy')
+   ax.set(xticks=[])
+   ax.legend()
+   ax.label_outer()
+   librosa.display.specshow(librosa.amplitude_to_db(S, ref=np.max),
+                           y_axis='log', x_axis='time', ax=ax)
+   ax.set(title='log Power spectrogram')
+   img=image(fig,"rms")
+   return img
+
+def voice_spec(file):
+   fig,ax = plt.subplots(figsize=(6,6))
+   plt.xlabel("Time (Sec)")
+   plt.ylabel("Frequency (Hz)")
+   plt.title("Spectrogram")
+   ax=sns.set_style(style='darkgrid')
+   sample_rate, signal = wavfile.read(file)
+   # select left channel only
+   signal = signal[:,0]
+   # trim the first 125 seconds
+   first = signal[:int(sample_rate*15)]
+   powerSpectrum, frequenciesFound, time, imageAxis = plt.specgram(first, Fs=sample_rate)
+   img=image(fig,"result")
+   return img
