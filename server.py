@@ -10,6 +10,10 @@ import librosa
 import sounddevice as sd
 import wavio as wv
 import model
+import pydotplus
+from sklearn.datasets import load_iris
+from sklearn import tree
+import graphviz
 
     # features = [chroma_stft, rmse, spec_cent, spec_bw, rolloff, zcr, mfcc]
     # feature = []
@@ -97,9 +101,86 @@ def test_model (wav_file):
         result='True'
     else:
         result=''
+        
 
     return result
 
+
+    
+def get_model_path(features):
+    clf = pickle.load(open("Speech3-model.pkl",'rb'))
+    # dot_data = tree.export_graphviz(clf, out_file=None,
+    #                             filled=True, rounded=True,
+    #                             special_characters=True)
+    # graph = pydotplus.graph_from_dot_data(dot_data)
+
+    # # empty all nodes, i.e.set color to white and number of samples to zero
+    # for node in graph.get_node_list():
+    #     if node.get_attributes().get('label') is None:
+    #         continue
+    #     if 'samples = ' in node.get_attributes()['label']:
+    #         labels = node.get_attributes()['label'].split('<br/>')
+    #         for i, label in enumerate(labels):
+    #             if label.startswith('samples = '):
+    #                 labels[i] = 'samples = 0'
+    #         node.set('label', '<br/>'.join(labels))
+    #         node.set_fillcolor('white')
+
+    # samples = features
+    # decision_paths = clf.decision_path(samples)
+
+    # for decision_path in decision_paths:
+    #     for n, node_value in enumerate(decision_path.toarray()[0]):
+    #         if node_value == 0:
+    #             continue
+    #         node = graph.get_node(str(n))[0]            
+    #         node.set_fillcolor('green')
+    #         labels = node.get_attributes()['label'].split('<br/>')
+    #         for i, label in enumerate(labels):
+    #             if label.startswith('samples = '):
+    #                 labels[i] = 'samples = {}'.format(int(label.split('=')[1]) + 1)
+
+    #         node.set('label', '<br/>'.join(labels))
+
+    # filename = 'tree.png'
+    # graph.write_png(filename)
+    dot_data = tree.export_graphviz(clf, out_file=None,
+                                filled=True, rounded=True,
+                                special_characters=True)
+    graph = pydotplus.graph_from_dot_data(dot_data)
+
+    # empty all nodes, i.e.set color to white and number of samples to zero
+    for node in graph.get_node_list():
+        if node.get_attributes().get('label') is None:
+            continue
+        if 'samples = ' in node.get_attributes()['label']:
+            labels = node.get_attributes()['label'].split('<br/>')
+            for i, label in enumerate(labels):
+                if label.startswith('samples = '):
+                    labels[i] = 'samples = 0'
+            node.set('label', '<br/>'.join(labels))
+            node.set_fillcolor('white')
+
+    samples = features
+    samples = np.array(samples)
+    decision_paths = clf.decision_path(samples.reshape(1,-1))
+
+    for decision_path in decision_paths:
+        for n, node_value in enumerate(decision_path.toarray()[0]):
+            if node_value == 0:
+                continue
+            node = graph.get_node(str(n))[0]            
+            node.set_fillcolor('green')
+            labels = node.get_attributes()['label'].split('<br/>')
+            for i, label in enumerate(labels):
+                if label.startswith('samples = '):
+                    labels[i] = 'samples = {}'.format(int(label.split('=')[1]) + 1)
+
+            node.set('label', '<br/>'.join(labels))
+
+    filename = 'static/assets/img/tree.png'
+    graph.write_png(filename)
+    return filename
 
 def predict_sound(file_name):
     X, sample_rate = librosa.load(file_name, res_type='kaiser_fast') 
@@ -119,7 +200,9 @@ def predict_sound(file_name):
     sr=sample_rate).T,axis=0)
     features=[]
     features.append(np.concatenate((mfccs, chroma, mel, contrast, tonnetz),axis=0))
+    path = get_model_path(features)
     open_model = pickle.load(open("Speech2-model.pkl",'rb'))
+    # open_model = pickle.load(open("Speech3-model.pkl",'rb'))
     result =open_model.predict(features)[0]
     members = ["others", 'Mahmoud Hamdy','Sherif', 'yassmen', 'bassma']
     try:
@@ -127,7 +210,7 @@ def predict_sound(file_name):
     except:
         print(result)
         result = "There's an error in recording please try again"
-    return result
+    return result, path
 
 
 
@@ -136,6 +219,7 @@ def index():
         speech =''
         speaker =''
         file_name=''
+        model_path = ''
         y=[]
         sr=[]
         chroma_fig=''
@@ -160,11 +244,12 @@ def index():
                 file_name="result.wav"
                 y, sr = librosa.load(file_name)
                 if(len(y)!=0):
-                    speaker=predict_sound("result.wav")
+                    speaker, model_path=predict_sound("result.wav")
                     if(speaker != 'others'):
                         speaker = "Hello "+speaker
                 else:
                     speaker = 'Please record audio'
+
                 speech=test_model("result.wav")
                 # if(speech=='Open the door'):
                 #     # speaker = "True"
@@ -198,7 +283,8 @@ def index():
                 spectrum='static/assets/img/result'+str(model.variables.counter)+'.jpg'
                 model.variables.counter+=1
 
-        return render_template('index.html',speaker=speaker, speech=speech,chroma_fig=chroma_fig,rms_fig=rms_fig,spectrum=spectrum)
+        return render_template('index.html',speaker=speaker, 
+        speech=speech,chroma_fig=chroma_fig,rms_fig=rms_fig,spectrum=spectrum, model_path=model_path)
         # return render_template('index.html', speech=speech,speaker=speaker,file_name=file_name,y=y,sr=sr)
 
 if __name__ == '__main__':
