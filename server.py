@@ -4,11 +4,12 @@ import numpy as np
 # from sympy import Id
 import pickle
 import os
-import speech_recognition as spr
+#import speech_recognition as spr
 import pickle
 import librosa
 import sounddevice as sd
 import wavio as wv
+import model
 
 
     # features = [chroma_stft, rmse, spec_cent, spec_bw, rolloff, zcr, mfcc]
@@ -139,6 +140,9 @@ def index():
         file_name=''
         y=[]
         sr=[]
+        chroma_fig=''
+        rms_fig=''
+        spectrum=''
         if request.method == "POST":
             record = request.form["recording_icon"]
             if(record!=0):
@@ -189,8 +193,15 @@ def index():
                 # except spr.RequestError as e:
                 #     print("Could not request results; {0}".format(e))
                 # y, sr = librosa.load(file_name)
+                rms_fig=model.rms("result.wav")
+                rms_fig='static/assets/img/rms'+str(model.variables.counter)+'.jpg'
+                chroma_fig=model.chroma("result.wav")
+                chroma_fig='static/assets/img/chroma'+str(model.variables.counter)+'.jpg'
+                spectrum= model.voice_spec("result.wav")
+                spectrum='static/assets/img/result'+str(model.variables.counter)+'.jpg'
+                model.variables.counter+=1
 
-        return render_template('index.html',speaker=speaker, speech=speech)
+        return render_template('index.html',speaker=speaker, speech=speech,chroma_fig=chroma_fig,rms_fig=rms_fig,spectrum=spectrum)
         # return render_template('index.html', speech=speech,speaker=speaker,file_name=file_name,y=y,sr=sr)
 
 if __name__ == '__main__':
