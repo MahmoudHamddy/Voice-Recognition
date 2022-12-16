@@ -11,6 +11,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/static/assets/img/icon.png" />
     <title>Voice Recognition Password</title>
   </head>
 
@@ -18,7 +19,7 @@
     <form method="post">
       <div>
         <center>
-          <!-- <h1 id="website_title">Voice Recognition Password</h1> -->
+          <h1 id="website_title">Voice Recognition Password</h1>
           {% if speech != "" %}
           <textarea id="text_recorded" disabled>{{speech}}</textarea>
           {% endif %}
@@ -27,23 +28,15 @@
           <textarea id="ML" disabled>{{speaker}}</textarea>
           {% endif %}
           <button
-            type="submit"
-            class="btn btn-danger"
+            class="recording_button"
             id="recording_button"
             name="recording_icon"
-          >
-            Record
-          </button>
+          ></button>
         </center>
       </div>
       <div class="row">
         <div class="column">
-          <img
-            src="{{chroma_fig}}"
-            class="chroma"
-            width="100%"
-            height="400px"
-          />
+          <img src="{{chroma_fig}}" width="100%" height="400px" />
         </div>
         <div class="column">
           <img src="{{rms_fig}}" width="100%" height="400px" />
@@ -53,10 +46,11 @@
         </div>
       </div>
     </form>
-    <script type="text/javascript" src="../static/assets/js/script.js"></script>
+    <script src="../static/assets/js/script2.js"></script>
   </body>
 </html>
 
 <!-- ------------------------------------------------------------------------------- -->
+<!-- <script type="text/javascript" src="../static/assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script> -->
