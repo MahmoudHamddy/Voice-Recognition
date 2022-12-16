@@ -97,7 +97,6 @@ def test_model (wav_file):
         result='True'
     else:
         result=''
-        
 
     return result
 
@@ -166,7 +165,6 @@ def index():
                         speaker = "Hello "+speaker
                 else:
                     speaker = 'Please record audio'
-
                 speech=test_model("result.wav")
                 # if(speech=='Open the door'):
                 #     # speaker = "True"

@@ -71,6 +71,7 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 50%;
+  border: 0px;
   background-image: url("/static/assets/img/mic.jpg");
   background-size: contain;
   background-repeat: no-repeat;
