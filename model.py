@@ -92,7 +92,36 @@ def image(fig,name):
    data = base64.b64encode(img.getbuffer()).decode("ascii")
    image_file_name='static/assets/img/'+str(name)+str(variables.counter)+'.jpg'
    plt.savefig(image_file_name)
-   return f"<img src='data:image/png;base64,{data}'/>"
+#    return f"<img src='data:image/png;base64,{data}'/>"
+   return image_file_name
+
+def spectral_features(audio):
+    signal , sample_rate = librosa.load(audio)
+    spec_bw = librosa.feature.spectral_bandwidth(y=signal, sr=sample_rate)
+    S, phase = librosa.magphase(librosa.stft(y=signal))
+    centroid = librosa.feature.spectral_centroid(S=S)
+    rolloff = librosa.feature.spectral_rolloff(y=signal, sr=sample_rate, roll_percent=0.99)
+    rolloff_min = librosa.feature.spectral_rolloff(y=signal, sr=sample_rate, roll_percent=0.01)
+    fig, ax = plt.subplots()
+    times = librosa.times_like(spec_bw)
+    ax.semilogy(times, spec_bw[0], label='Spectral bandwidth')
+    ax.legend()
+    ax.label_outer()
+    fig.patch.set_facecolor('#e4e8e8')
+    img=librosa.display.specshow(librosa.amplitude_to_db(S, ref=np.max),
+                        y_axis='log', x_axis='time', ax=ax)
+    ax.set(title='The Spectral Features ')
+    ax.fill_between(times, np.maximum(0, centroid[0] - spec_bw[0]),
+                np.minimum(centroid[0] + spec_bw[0], sample_rate/2),
+                alpha=0.5, label='Centroid +- bandwidth')
+    ax.plot(times, centroid[0], label='Spectral centroid', color='w')
+    ax.plot(librosa.times_like(rolloff), rolloff[0], label='Roll-off frequency (0.99)')
+    ax.plot(librosa.times_like(rolloff), rolloff_min[0], color='w',
+        label='Roll-off frequency (0.01)')
+    ax.legend(loc='lower right')
+    fig.colorbar(img, ax=ax)
+    img=image(fig,"spec")
+    return img
 
 def chroma(file):
     y, sr = librosa.load(file,res_type='kaiser_fast')

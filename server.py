@@ -14,45 +14,14 @@ import pydotplus
 from sklearn.datasets import load_iris
 from sklearn import tree
 import graphviz
-
-    # features = [chroma_stft, rmse, spec_cent, spec_bw, rolloff, zcr, mfcc]
-    # feature = []
-    # # features[0][5] = [features[0][5]]
-    # for i in range(len(features)):
-    #     # print(features[0][1],'1')
-    #     # print(features[0][2], '2')
-    #     # print(features[0][3], '3')
-    #     # print(features[0][4], '4')
-    #     # print(features[0][5], '5')
-    #     # feature.append(np.concatenate((features[i][0], features[i][1], features[i][2]
-    #     # , features[i][3],features[i][4],features[i][5], features[i][6]), axis=0))
-    #     to_append   = f'{np.mean(features[i][0])} {np.mean(features[i][1])} {np.mean(features[i][2])} {np.mean(features[i][3])} {np.mean(features[i][4])} {np.mean(features[i][5])}'
-    #     for e in features[i][6]:
-    #         to_append += f' {np.mean(e)}'
-    #     # print(to_append.split())
-    #     feature.append(to_append.split())
-    #     # print(feature)
-
-    # # print("These are: ",features)
-    # # print("The length",len(features[0]))
-    # # print(feature)
-    # for i in range(len(features)):
-    #     for index in range(0,len(feature[i])):
-    #         # print(i, index)
-    #         # print(feature[i][index])
-            # feature[i][index]=float(feature[i][index])
+from dtreeviz.trees import *
 
 
 app = Flask(__name__,template_folder="templates")
-#model = pickle.load(open("DSP_Task3_TeamNo-main.rar", "rb"))
 
 @app.route('/')
 def hello_name():
    return render_template('index.html')
-
-# @app.route('/upload')
-# def upload_file():
-#    return render_template('upload.html')
 	
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
@@ -90,6 +59,7 @@ def test_model (wav_file):
     # wav_file='k_close_2.wav'
     
     features=prepare_testing(wav_file)
+    # model= pickle.load(open('Sentence-model.pkl','rb'))
     model= pickle.load(open('Sentence-model2.pkl','rb'))
     model_output =model.predict(features)
 
@@ -108,42 +78,9 @@ def test_model (wav_file):
 
     
 def get_model_path(features):
+    # clf = pickle.load(open("Speech2-model.pkl",'rb'))
     clf = pickle.load(open("Speech3-model.pkl",'rb'))
-    # dot_data = tree.export_graphviz(clf, out_file=None,
-    #                             filled=True, rounded=True,
-    #                             special_characters=True)
-    # graph = pydotplus.graph_from_dot_data(dot_data)
-
-    # # empty all nodes, i.e.set color to white and number of samples to zero
-    # for node in graph.get_node_list():
-    #     if node.get_attributes().get('label') is None:
-    #         continue
-    #     if 'samples = ' in node.get_attributes()['label']:
-    #         labels = node.get_attributes()['label'].split('<br/>')
-    #         for i, label in enumerate(labels):
-    #             if label.startswith('samples = '):
-    #                 labels[i] = 'samples = 0'
-    #         node.set('label', '<br/>'.join(labels))
-    #         node.set_fillcolor('white')
-
-    # samples = features
-    # decision_paths = clf.decision_path(samples)
-
-    # for decision_path in decision_paths:
-    #     for n, node_value in enumerate(decision_path.toarray()[0]):
-    #         if node_value == 0:
-    #             continue
-    #         node = graph.get_node(str(n))[0]            
-    #         node.set_fillcolor('green')
-    #         labels = node.get_attributes()['label'].split('<br/>')
-    #         for i, label in enumerate(labels):
-    #             if label.startswith('samples = '):
-    #                 labels[i] = 'samples = {}'.format(int(label.split('=')[1]) + 1)
-
-    #         node.set('label', '<br/>'.join(labels))
-
-    # filename = 'tree.png'
-    # graph.write_png(filename)
+    # clf = clf.estimators_[5]
     dot_data = tree.export_graphviz(clf, out_file=None,
                                 filled=True, rounded=True,
                                 special_characters=True)
@@ -159,7 +96,7 @@ def get_model_path(features):
                 if label.startswith('samples = '):
                     labels[i] = 'samples = 0'
             node.set('label', '<br/>'.join(labels))
-            node.set_fillcolor('white')
+            node.set_fillcolor('grey')
 
     samples = features
     samples = np.array(samples)
@@ -170,7 +107,7 @@ def get_model_path(features):
             if node_value == 0:
                 continue
             node = graph.get_node(str(n))[0]            
-            node.set_fillcolor('green')
+            node.set_fillcolor('orange')
             labels = node.get_attributes()['label'].split('<br/>')
             for i, label in enumerate(labels):
                 if label.startswith('samples = '):
@@ -182,9 +119,33 @@ def get_model_path(features):
     graph.write_png(filename)
     return filename
 
+def get_path_as_Histogram(features):
+    X = pickle.load(open("X_data",'rb'))
+    y = pickle.load(open("Y_data",'rb'))
+    clf = pickle.load(open("Speech3-model.pkl",'rb'))
+    feature_names = ['mfccs', 'chroma', 'mel', 'contrast', 'tonnetz']*len(X)
+    # feature_names = arrange_feat(DataSet)
+    target_names = ["others", 'Mahmoud Hamdy','Sherif', 'yassmen', 'bassma']
+    print(feature_names[0])
+    viz = dtreeviz(clf,
+                np.array(X), 
+                np.array(y),
+                target_name="Member",
+                feature_names = feature_names,
+                class_names= target_names, 
+                title="Wine data set regression",
+                fontname="Arial",
+                scale=1.5,
+                X=features[0])
+                # fancy=False)
+    filename = 'static/assets/img/Histogramtree.svg'
+    viz.save(filename)
+    return filename
+
+
 def predict_sound(file_name):
     X, sample_rate = librosa.load(file_name, res_type='kaiser_fast') 
-
+    X, index    = librosa.effects.trim(X)
     # Generate Mel-frequency cepstral coefficients (MFCCs) from a time series 
     mfccs = np.mean(librosa.feature.mfcc(y=X, sr=sample_rate, n_mfcc=40).T,axis=0)
     # Generates a Short-time Fourier transform (STFT) to use in the chroma_stft
@@ -201,8 +162,9 @@ def predict_sound(file_name):
     features=[]
     features.append(np.concatenate((mfccs, chroma, mel, contrast, tonnetz),axis=0))
     path = get_model_path(features)
-    open_model = pickle.load(open("Speech2-model.pkl",'rb'))
-    # open_model = pickle.load(open("Speech3-model.pkl",'rb'))
+    path2 = get_path_as_Histogram(features)
+    # open_model = pickle.load(open("Speech2-model.pkl",'rb'))
+    open_model = pickle.load(open("Speech3-model.pkl",'rb'))
     result =open_model.predict(features)[0]
     members = ["others", 'Mahmoud Hamdy','Sherif', 'yassmen', 'bassma']
     try:
@@ -210,7 +172,7 @@ def predict_sound(file_name):
     except:
         print(result)
         result = "There's an error in recording please try again"
-    return result, path
+    return result, path, path2
 
 
 
@@ -244,7 +206,7 @@ def index():
                 file_name="result.wav"
                 y, sr = librosa.load(file_name)
                 if(len(y)!=0):
-                    speaker, model_path=predict_sound("result.wav")
+                    speaker, model_path, m_path2=predict_sound("result.wav")
                     if(speaker != 'others'):
                         speaker = "Hello "+speaker
                 else:
@@ -275,17 +237,19 @@ def index():
                 # except spr.RequestError as e:
                 #     print("Could not request results; {0}".format(e))
                 # y, sr = librosa.load(file_name)
-                rms_fig=model.rms("result.wav")
-                rms_fig='static/assets/img/rms'+str(model.variables.counter)+'.jpg'
-                chroma_fig=model.chroma("result.wav")
-                chroma_fig='static/assets/img/chroma'+str(model.variables.counter)+'.jpg'
-                spectrum= model.voice_spec("result.wav")
-                spectrum='static/assets/img/result'+str(model.variables.counter)+'.jpg'
-                model.variables.counter+=1
-
-        return render_template('index.html',speaker=speaker, 
-        speech=speech,chroma_fig=chroma_fig,rms_fig=rms_fig,spectrum=spectrum, model_path=model_path)
-        # return render_template('index.html', speech=speech,speaker=speaker,file_name=file_name,y=y,sr=sr)
+                # rms_fig=model.rms("result.wav")
+                # rms_fig='static/assets/img/rms'+str(model.variables.counter)+'.jpg'
+                # chroma_fig=model.chroma("result.wav")
+                # chroma_fig='static/assets/img/chroma'+str(model.variables.counter)+'.jpg'
+                # spectrum= model.voice_spec("result.wav")
+                # spectrum='static/assets/img/result'+str(model.variables.counter)+'.jpg'
+                # model.variables.counter+=1
+                Total_spec = model.spectral_features(file_name)
+                print("Pic Path",Total_spec)
+        # return render_template('index.html',speaker=speaker, 
+        # speech=speech,chroma_fig=chroma_fig,rms_fig=rms_fig,spectrum=spectrum, model_path=model_path)
+        return render_template('index.html', speech=speech,speaker=speaker,file_name=file_name,
+            TSpec = Total_spec,  model_path=model_path, m_path2=m_path2)
 
 if __name__ == '__main__':
     app.run(debug=True)   
