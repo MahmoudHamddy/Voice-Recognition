@@ -15,6 +15,8 @@ from sklearn.datasets import load_iris
 from sklearn import tree
 import graphviz
 from dtreeviz.trees import *
+from svglib.svglib import svg2rlg
+from reportlab.graphics import renderPM
 
 
 app = Flask(__name__,template_folder="templates")
@@ -133,11 +135,11 @@ def get_path_as_Histogram(features):
                 target_name="Member",
                 feature_names = feature_names,
                 class_names= target_names, 
-                title="Wine data set regression",
+                title="SBME3 voice recognition",
                 fontname="Arial",
                 scale=1.5,
-                X=features[0])
-                # fancy=False)
+                X=features[0],
+                fancy=False)
     filename = 'static/assets/img/Histogramtree.svg'
     viz.save(filename)
     return filename
@@ -165,6 +167,7 @@ def predict_sound(file_name):
     path2 = get_path_as_Histogram(features)
     # open_model = pickle.load(open("Speech2-model.pkl",'rb'))
     open_model = pickle.load(open("Speech3-model.pkl",'rb'))
+    print(chroma)
     result =open_model.predict(features)[0]
     members = ["others", 'Mahmoud Hamdy','Sherif', 'yassmen', 'bassma']
     try:

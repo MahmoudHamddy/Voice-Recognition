@@ -18,10 +18,9 @@ body {
 }
 
 #text_recorded {
-  width: 25%;
+  /* width: 25%; */
   border-radius: 20px;
-  resize: none;
-  padding: 0px;
+  /* padding: 0px; */
   font-size: 25px;
   margin-top: 10px;
   text-align: center;
@@ -36,10 +35,9 @@ body {
 }
 
 #ML {
-  width: 25%;
+  /* width: 25%; */
   border-radius: 20px;
-  resize: none;
-  padding: 0px;
+  /* padding: 0px; */
   font-size: 25px;
   margin-top: 10px;
   text-align: center;
@@ -50,15 +48,12 @@ body {
 /* Three image containers (use 25% for four, and 50% for two, etc) */
 .column {
   float: left;
-  width: 33.33%;
-  padding: 5px;
+  width: 50%;
 }
 
 /* Clear floats after image containers */
 .row::after {
-  content: "";
-  clear: both;
-  display: table;
+  display: flex;
 }
 
 #recording_button {

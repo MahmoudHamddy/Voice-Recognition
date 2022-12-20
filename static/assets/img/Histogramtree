@@ -5,124 +5,29 @@ digraph G {
     ranksep=.2;
     rankdir=TD;
     margin=0.0;
-    graph [label="Wine data set regression", labelloc=t, fontname="Arial" fontsize=14 fontcolor="#444443"];
+    graph [label="SBME3 voice recognition", labelloc=t, fontname="Arial" fontsize=14 fontcolor="#444443"];
     node [margin="0.03" penwidth="0.5" width=.1, height=.1];
     edge [arrowsize=.4 penwidth="0.3"]
 
-    node4 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node4_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node3 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node3_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node9 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node9_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node8 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node8_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node2 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node2_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node15 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node15_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node18 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node18_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node14 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node14_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node23 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node23_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node21 [margin="0" shape=box penwidth=".5" color="#D67C03" style="dashed" label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node21_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node13 [margin="0" shape=box penwidth=".5" color="#D67C03" style="dashed" label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node13_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node1 [margin="0" shape=box penwidth=".5" color="#D67C03" style="dashed" label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node1_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node27 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node27_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node33 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node33_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node31 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node31_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node36 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node36_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node30 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node30_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node26 [margin="0" shape=none label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node26_21768.svg"/></td>
-            </tr>
-            </table>>]
-	node0 [margin="0" shape=box penwidth=".5" color="#D67C03" style="dashed" label=<<table border="0">
-            
-            <tr>
-                    <td><img src="C:\Users\mahmo\AppData\Local\Temp/node0_21768.svg"/></td>
-            </tr>
-            </table>>]
+    node4 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">mfccs@-6.88</font>>]
+	node3 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">mel@2.87</font>>]
+	node9 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">contrast@22.38</font>>]
+	node8 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">mfccs@2.79</font>>]
+	node2 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">mel@3.33</font>>]
+	node15 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">chroma@0.00</font>>]
+	node18 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">contrast@0.00</font>>]
+	node14 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">mfccs@-7.65</font>>]
+	node23 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">chroma@-5.00</font>>]
+	node21 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">mfccs@22.02</font>>]
+	node13 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">contrast@0.00</font>>]
+	node1 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">tonnetz@0.81</font>>]
+	node27 [margin="0" shape=box penwidth=".5" color="#D67C03" style="dashed" label=<<font face="Helvetica" color="#444443" point-size="12">contrast@0.16</font>>]
+	node33 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">tonnetz@-6.09</font>>]
+	node31 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">chroma@8.76</font>>]
+	node36 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">mfccs@3.65</font>>]
+	node30 [margin="0" shape=none label=<<font face="Helvetica" color="#444443" point-size="12">contrast@0.95</font>>]
+	node26 [margin="0" shape=box penwidth=".5" color="#D67C03" style="dashed" label=<<font face="Helvetica" color="#444443" point-size="12">mfccs@0.01</font>>]
+	node0 [margin="0" shape=box penwidth=".5" color="#D67C03" style="dashed" label=<<font face="Helvetica" color="#444443" point-size="12">chroma@116.69</font>>]
     node4 -> leaf5 [penwidth=0.3 color="#444443" label=<>]
 	node4 -> leaf6 [penwidth=0.3 color="#444443" label=<>]
 	
@@ -195,7 +100,7 @@ digraph G {
                 leaf24 -> leaf25 [style=invis]
             }
             
-	node21 -> leaf22 [penwidth=1.2 color="#D67C03" label=<>]
+	node21 -> leaf22 [penwidth=0.3 color="#444443" label=<>]
 	node21 -> node23 [penwidth=0.3 color="#444443" label=<>]
 	
             {
@@ -204,7 +109,7 @@ digraph G {
             }
             
 	node13 -> node14 [penwidth=0.3 color="#444443" label=<>]
-	node13 -> node21 [penwidth=1.2 color="#D67C03" label=<>]
+	node13 -> node21 [penwidth=0.3 color="#444443" label=<>]
 	
             {
                 rank=same;
@@ -212,14 +117,14 @@ digraph G {
             }
             
 	node1 -> node2 [penwidth=0.3 color="#444443" label=<>]
-	node1 -> node13 [penwidth=1.2 color="#D67C03" label=<>]
+	node1 -> node13 [penwidth=0.3 color="#444443" label=<>]
 	
             {
                 rank=same;
                 node2 -> node13 [style=invis]
             }
             
-	node27 -> leaf28 [penwidth=0.3 color="#444443" label=<>]
+	node27 -> leaf28 [penwidth=1.2 color="#D67C03" label=<>]
 	node27 -> leaf29 [penwidth=0.3 color="#444443" label=<>]
 	
             {
@@ -259,7 +164,7 @@ digraph G {
                 node31 -> node36 [style=invis]
             }
             
-	node26 -> node27 [penwidth=0.3 color="#444443" label=<>]
+	node26 -> node27 [penwidth=1.2 color="#D67C03" label=<>]
 	node26 -> node30 [penwidth=0.3 color="#444443" label=<>]
 	
             {
@@ -267,8 +172,8 @@ digraph G {
                 node27 -> node30 [style=invis]
             }
             
-	node0 -> node1 [penwidth=1.2 color="#D67C03" label=<&le;>]
-	node0 -> node26 [penwidth=0.3 color="#444443" label=<&gt;>]
+	node0 -> node1 [penwidth=0.3 color="#444443" label=<&le;>]
+	node0 -> node26 [penwidth=1.2 color="#D67C03" label=<&gt;>]
 	
             {
                 rank=same;
@@ -278,121 +183,121 @@ digraph G {
     leaf5 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf5_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf5_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf6 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf6_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf6_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf7 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf7_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf7_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf10 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf10_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf10_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf11 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf11_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf11_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf12 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf12_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf12_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf16 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf16_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf16_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf17 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf17_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf17_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf19 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf19_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf19_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf20 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf20_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf20_16632.svg"/></td>
         </tr>
         </table>>]
-	leaf22 [margin="0" shape=box penwidth=".5" color="#D67C03" style="dashed" label=<<table border="0" CELLBORDER="0">
+	leaf22 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf22_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf22_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf24 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf24_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf24_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf25 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf25_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf25_16632.svg"/></td>
         </tr>
         </table>>]
-	leaf28 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
+	leaf28 [margin="0" shape=box penwidth=".5" color="#D67C03" style="dashed" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf28_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf28_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf29 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf29_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf29_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf32 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf32_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf32_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf34 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf34_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf34_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf35 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf35_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf35_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf37 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf37_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf37_16632.svg"/></td>
         </tr>
         </table>>]
 	leaf38 [margin="0" shape=box penwidth="0" color="#444443" label=<<table border="0" CELLBORDER="0">
         
         <tr>
-                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf38_21768.svg"/></td>
+                <td><img src="C:\Users\mahmo\AppData\Local\Temp/leaf38_16632.svg"/></td>
         </tr>
         </table>>]
 
@@ -403,7 +308,7 @@ digraph G {
                 
         <table border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td border="0" cellspacing="0" cellpadding="0"><img src="C:\Users\mahmo\AppData\Local\Temp/legend_21768.svg"/></td>
+                <td border="0" cellspacing="0" cellpadding="0"><img src="C:\Users\mahmo\AppData\Local\Temp/legend_16632.svg"/></td>
             </tr>
         </table>
         
@@ -417,16 +322,16 @@ digraph G {
                 
                 <table border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">chroma</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">tonnetz</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">contrast</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">mfccs</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#444443" point-size="11">...</font></td>
+                    <td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">chroma</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">mfccs</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">contrast</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#444443" point-size="11">...</font></td>
                 </tr>
                 <tr>
-                    <td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">59.49</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">3.42</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">0.03</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">21.76</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#444443" point-size="11">...</font></td>
+                    <td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">118.40</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">0.00</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#D67C03" point-size="11">0.15</font></td><td cellpadding="1" align="right" bgcolor="white"><font face="Helvetica" color="#444443" point-size="11">...</font></td>
                 </tr>
                 </table>
                 
                 >]
             }
-            leaf22 -> X_y [dir=back; penwidth="1.2" color="#D67C03" label=<<font face="Helvetica" color="#444443" point-size="11"> &#160;Prediction<br/> others</font>>]
+            leaf28 -> X_y [dir=back; penwidth="1.2" color="#D67C03" label=<<font face="Helvetica" color="#444443" point-size="11"> &#160;Prediction<br/> bassma</font>>]
             
 }
     

@@ -13,47 +13,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/static/assets/img/icon.png" />
     <title>Voice Recognition Password</title>
+    <style>
+      #leftbox {
+          float: left;
+          width: 25%;
+          height: 280px;
+      }
+      #rightbox {
+          float: right;
+          width: 25%;
+          height: 280px;
+      }
+    </style>
   </head>
 
-  <body>
+  <body style="padding: 50px;">
     <form method="post">
-      <div>
-        <center>
-          <h1 id="website_title">Voice Recognition Password</h1>
-          {% if speech != "" %}
-          <textarea id="text_recorded" disabled>{{speech}}</textarea>
-          {% endif %}
-          <!-- <textarea id="whose_recorded" disabled></textarea> -->
-          {% if speaker != "" %}
-          <textarea id="ML" disabled>{{speaker}}</textarea>
-          {% endif %}
-          <button
-            class="recording_button"
-            id="recording_button"
-            name="recording_icon"
-          ></button>
-        </center>
+      <!-- <div class="column" style="margin: 0%; padding: 0%;">
+        <img src="/static/assets/img/decision.png" height="15%" width="100%" style="margin: 0%; padding: 0%;">
+      </div> -->
+      <center style="display:flex; gap: 100px;">
+        <div class="column" style="border-radius: 20px; padding: 20px; margin-bottom: 10px; background-color: rgb(240, 230, 210); opacity: 0.7; ">
+          <b>Decision Tree: </b> can be “learned” by splitting the source set into subsets  based on an attribute value test. This process is repeated on each derived subset in a recursive manner called recursive partitioning. The recursion is completed when the subset at a node all has the same value of the target variable, or when splitting no longer adds value to the predictions.
+        </div>
+        <div class="column" style="width: 300px;">
+          <div>
+              <button
+              class="recording_button"
+              id="recording_button"
+              name="recording_icon"
+              ></button>
+          </div>
+          <div>
+            {% if speech != "" %}
+            <textarea id="text_recorded" disabled>{{speech}}</textarea>
+            {% endif %}
+          </div>
+          <div>
+            {% if speaker != "" %}
+            <textarea id="ML" disabled>{{speaker}}</textarea>
+            {% endif %}
+          </div>
+          <!-- <div class="row">
+            <img src="{{TSpec}}" width=" 100%" height="250px" style="object-fit: contain;"/>
+          </div> -->
+        </div>
+        <div class="column" style="border-radius: 20px; padding: 20px; margin-bottom: 10px; background-color: rgb(240, 230, 210); opacity: 0.7; ">
+          <b>Model features <br></b>
+          Root-mean-square (RMS): It refers to the total magnitude of the signal<br>
+          Zero crossing rate : It the rate at which a signal changes from positive to zero to negative or from negative to zero to positive.<br>
+          Mel-Frequency Cepstral Coefficients (MFCCs): It is a representation of the short-term power spectrum of a sound, based on some transformation in a Mel-scale. 
+          <br>
+          Chroma : It denotes to the characteristics of a certain pitch {C, C♯, D, D♯, E, F, F♯, G, G♯, A, A♯, B} is present in the sampled frame.<br>
+
+        </div>
+
+        <!-- <div>
+            <img src="/static/assets/img/TreeViz.jpg"  style="border-radius: 20px; margin-left: 500px;"/>
+          </div> -->
+      </center>
+      <div class="column">
+          <img src="{{m_path2}}" width="700px" style="border-radius: 20px;"/>
+        </div>
+        <div class="column">
+          <img src="/static/assets/img/TreeViz.jpg" width="600px"  style="border-radius: 20px;margin-left: 50px;"/>
+        </div>
       </div>
-      <div class="row">
-        <img src="{{model_path}}" width=" 100%" height="300px" />
-      </div>
-      <!-- <div class="row">
-        <div class="column">
-          <img src="{{chroma_fig}}" width="100%" height="300px" />
-        </div>
-        <div class="column">
-          <img src="{{rms_fig}}" width="100%" height="300px" />
-        </div>
-        <div class="column">
-          <img src="{{spectrum}}" width=" 100%" height="300px" />
-        </div> --> 
-        <div class="column">
-          <img src="{{TSpec}}" width=" 100%" height="300px" />
-        </div>
-        <div class="row">
-          <img src="{{m_path2}}" width=" 100%" height="300px" />
-        </div>
-      </div>
+        <!-- <div class>
+          <img src="{{model_path}}" />
+        </div> -->
     </form>
     <script src="../static/assets/js/script2.js"></script>
   </body>
@@ -62,3 +90,16 @@
 <!-- <script type="text/javascript" src="../static/assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script> -->
+
+<!-- <style>
+  #leftbox {
+      float: left;
+      width: 25%;
+      height: 280px;
+  }
+  #rightbox {
+      float: right;
+      width: 75%;
+      height: 280px;
+  }
+  </style> -->
